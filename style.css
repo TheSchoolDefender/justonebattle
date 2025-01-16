@@ -1,0 +1,436 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: black;
+  color: white;
+  font-family: 'Press Start 2P', cursive;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.screen {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.screen.active {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-title {
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: 50px;
+  animation: glitch 1s linear infinite;
+}
+
+.button-container {
+  display: flex;
+  gap: 20px;
+}
+
+button {
+  padding: 15px 30px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 18px;
+  background: white;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+.button-container button {
+  padding: 15px 30px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 18px;
+  background: white;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+  min-width: 120px;
+  margin: 0 10px;
+}
+
+#game-screen {
+  position: relative;
+}
+
+#level-info {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 24px;
+}
+
+#player {
+  width: 50px;
+  height: 50px;
+  background: white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#health-bar {
+  width: 100%;
+  height: 5px;
+  background: #ff0000;
+  position: absolute;
+  top: -10px;
+  left: 0;
+  transition: width 0.2s ease;
+}
+
+#health-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: #00ff00;
+  transition: width 0.2s ease;
+}
+
+#weapon-select {
+  padding: 20px;
+}
+
+.weapons-container {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.weapon-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+  width: 250px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.weapon-card:hover {
+  transform: scale(1.05);
+}
+
+.weapon-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin: 15px auto;
+  display: block;
+}
+
+.weapon-card h3 {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.weapon-card .description {
+  font-size: 12px;
+  margin-bottom: 15px;
+  color: #aaa;
+  height: 40px;
+}
+
+.stats {
+  text-align: left;
+}
+
+.stat {
+  margin-bottom: 8px;
+}
+
+.stat span {
+  font-size: 10px;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.stat-bar {
+  width: 100%;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.stat-bar .fill {
+  height: 100%;
+  background: #00ff00;
+}
+
+.enemy {
+  width: 30px;
+  height: 30px;
+  background: red;
+  position: absolute;
+  border-radius: 50%;
+  transition: filter 0.3s ease;
+}
+
+.enemy-health-bar {
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #00ff00;
+  transition: width 0.2s ease;
+}
+
+.weapon {
+  position: absolute;
+  pointer-events: none;
+  transform-origin: center;
+}
+
+.player-weapon {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+  transform-origin: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.projectile {
+  position: absolute;
+  pointer-events: none;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.fork-projectile {
+  background-image: url('https://eagershop.vercel.app/fork.png');
+}
+
+.knife-projectile {
+  background-image: url('https://eagershop.vercel.app/knife.png');
+}
+
+.spoon-projectile {
+  background-image: url('https://eagershop.vercel.app/spoon.png');
+}
+
+.trident-projectile {
+  background-image: url('https://eagershop.vercel.app/trident.png');
+}
+
+.shovel-projectile {
+  background-image: url('https://eagershop.vercel.app/shovel.png');
+}
+
+.sword-projectile {
+  background-image: url('https://eagershop.vercel.app/sword.png');
+}
+
+.knife-attack,
+.fork-attack,
+.spoon-attack {
+  display: none;
+}
+
+@keyframes glitch {
+  2%, 64% {
+    transform: translate(2px,0) skew(0deg);
+  }
+  4%, 60% {
+    transform: translate(-2px,0) skew(0deg);
+  }
+  62% {
+    transform: translate(0,0) skew(5deg); 
+  }
+}
+
+@keyframes spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.inventory {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 600px;
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid white;
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+  z-index: 1000;
+}
+
+.inventory-details {
+  width: 300px;
+  padding: 20px;
+  border-right: 1px solid white;
+}
+
+.inventory-details img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.inventory-details h3 {
+  margin-bottom: 15px;
+}
+
+.inventory-details p {
+  margin-bottom: 20px;
+  color: #aaa;
+}
+
+.inventory-details .stats {
+  margin-bottom: 20px;
+}
+
+.inventory-details .item-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inventory-details button {
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
+}
+
+.inventory-details button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.inventory-slots {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  overflow-y: auto;
+}
+
+.inventory-slot {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid white;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.inventory-slot:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.inventory-slot img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
+.item-count {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-size: 12px;
+}
+
+.crate {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: #8B4513;
+  border: 4px solid #654321;
+  box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.2),
+              inset -2px -2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+@keyframes collect {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+#xp-bar-container {
+  position: absolute;
+  top: 50px;
+  left: 20px;
+  width: 200px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid white;
+}
+
+#xp-bar {
+  height: 100%;
+  background: #00ff00;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+.level-up-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid white;
+  padding: 20px;
+  font-size: 24px;
+  animation: fadeInOut 3s forwards;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
