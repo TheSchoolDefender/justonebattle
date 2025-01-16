@@ -1,0 +1,95 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Just One Battle</title>
+  <link href="styles.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="title-screen" class="screen active">
+    <h1 class="game-title">Just One Battle</h1>
+    <div class="button-container">
+      <button id="start-btn">Start</button>
+      <button id="load-btn">Load</button>
+      <button id="save-btn">Save</button>
+    </div>
+  </div>
+
+  <div id="game-screen" class="screen">
+    <div id="level-info">Level 1</div>
+    <div id="xp-bar-container">
+      <div id="xp-bar"></div>
+    </div>
+    <div id="player">
+      <div id="health-bar"></div>
+    </div>
+  </div>
+
+  <div id="weapon-select" class="screen">
+    <h2>Choose Your Starter Weapon</h2>
+    <div class="weapons-container">
+      <div class="weapon-card" data-weapon="fork">
+        <img src="https://eagershop.vercel.app/fork.png" alt="Plastic Fork">
+        <h3>Plastic Fork</h3>
+        <p class="description">Fast throwing fork - Why the actual fork did they add this</p>
+        <div class="stats">
+          <div class="stat">
+            <span>Attack:</span>
+            <div class="stat-bar"><div class="fill" style="width: 20%"></div></div>
+          </div>
+          <div class="stat">
+            <span>Attack Speed:</span>
+            <div class="stat-bar"><div class="fill" style="width: 80%"></div></div>
+          </div>
+          <div class="stat">
+            <span>Weight:</span>
+            <div class="stat-bar"><div class="fill" style="width: 50%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="weapon-card" data-weapon="knife">
+        <img src="https://eagershop.vercel.app/knife.png" alt="Plastic Knife">
+        <h3>Plastic Knife</h3>
+        <p class="description">Spinning throwing knife - Hard to cut :(</p>
+        <div class="stats">
+          <div class="stat">
+            <span>Attack:</span>
+            <div class="stat-bar"><div class="fill" style="width: 50%"></div></div>
+          </div>
+          <div class="stat">
+            <span>Attack Speed:</span>
+            <div class="stat-bar"><div class="fill" style="width: 20%"></div></div>
+          </div>
+          <div class="stat">
+            <span>Weight:</span>
+            <div class="stat-bar"><div class="fill" style="width: 20%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="weapon-card" data-weapon="spoon">
+        <img src="https://eagershop.vercel.app/spoon.png" alt="Plastic Spoon">
+        <h3>Plastic Spoon</h3>
+        <p class="description">Triple throw spoon - What the hell??</p>
+        <div class="stats">
+          <div class="stat">
+            <span>Attack:</span>
+            <div class="stat-bar"><div class="fill" style="width: 20%"></div></div>
+          </div>
+          <div class="stat">
+            <span>Attack Speed:</span>
+            <div class="stat-bar"><div class="fill" style="width: 50%"></div></div>
+          </div>
+          <div class="stat">
+            <span>Weight:</span>
+            <div class="stat-bar"><div class="fill" style="width: 20%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
