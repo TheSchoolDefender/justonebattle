@@ -215,15 +215,12 @@ button:hover {
 }
 
 .player-weapon {
-  width: 60px;
-  height: 60px;
-  position: absolute;
-  object-fit: contain;
-  transition: transform 0.2s ease;
-  transform-origin: center;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+    transform-origin: center;
 }
 
 .projectile {
@@ -232,6 +229,13 @@ button:hover {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+}
+.aiming-line {
+    position: absolute;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.5);
+    transform-origin: left center;
+    pointer-events: none;
 }
 
 .fork-projectile {
@@ -244,6 +248,25 @@ button:hover {
 
 .spoon-projectile {
   background-image: url('https://eagershop.vercel.app/spoon.png');
+}
+.comically-large-spoon-projectile {
+  background-image: url('https://eagershop.vercel.app/spoon.png');
+    width: 65px;
+    height: 65px;
+}
+.comically-large-fork-projectile {
+    background-image: url('https://eagershop.vercel.app/fork.png');
+    width: 65px;
+    height: 65px;
+}
+.comically-large-knife-projectile {
+    background-image: url('https://eagershop.vercel.app/knife.png');
+    width: 65px;
+    height: 65px;
+}
+.arrow-projectile {
+  background-image: url('https://eagershop.vercel.app/arrow.png');
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.7));
 }
 
 .trident-projectile {
@@ -313,6 +336,7 @@ button:hover {
   height: 100px;
   object-fit: contain;
   margin-bottom: 20px;
+  display: block;
 }
 
 .inventory-details h3 {
@@ -433,4 +457,12 @@ button:hover {
   10% { opacity: 1; }
   90% { opacity: 1; }
   100% { opacity: 0; }
+}
+
+.regular-gun-projectile {
+    background: white;
+}
+.water-gun-projectile {
+    background: lightblue;
+    border-radius: 50%;
 }
